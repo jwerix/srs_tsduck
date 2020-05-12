@@ -3,13 +3,13 @@ FFmpeg static build
 
 *STATUS*: 
 ------------------
- This is a fork from https://github.com/zimbatm/ffmpeg-static made by BlackHole1 
- This docker file is built for ubuntu 18.04 bionic 
+ - This is a fork from https://github.com/zimbatm/ffmpeg-static made by BlackHole1 
+ - This docker file is built for ubuntu 18.04 bionic 
 
- upgrade rtmpdump/rtmplib with openssl
- upgrade openssl 1.1.1g
- upgrade ffmpeg to the latest master branch
- upgrade libxml2 to the latest master branch
+ - upgrade rtmpdump/rtmplib with openssl
+ - upgrade openssl 1.1.1g
+ - upgrade ffmpeg to the latest master branch
+ - upgrade libxml2 to the latest master branch
  
 Build in docker and copy binary to external system
 ---------------
