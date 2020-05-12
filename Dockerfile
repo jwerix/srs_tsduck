@@ -53,7 +53,7 @@ RUN apt-get update && apt-get install -y \
   yasm 
 
 # Copy the build scripts.
-COPY build.sh build-ubuntu.sh download.pl env.source fetchurl /ffmpeg-static/
+COPY build.sh download.pl env.source fetchurl /ffmpeg-static/
 VOLUME /ffmpeg-static
 WORKDIR /ffmpeg-static
 
