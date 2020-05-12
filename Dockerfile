@@ -43,4 +43,10 @@ make -j 4 &&  make install
 
 #Cleaning up
 RUN rm -rf /usr/local/go/src && rm -rf /tmp/srs/trunk/doc && rm -rf /tmp/srs/trunk/src && \
-rm -rf /tmp/srs/trunk/3rdparty/*.zip && rm -rf /tmp/srs/trunk/3rdparty/*.tar.gz
+rm -rf /tmp/srs/trunk/3rdparty/*.zip && \
+rm -rf /tmp/srs/trunk/3rdparty/*.tar.gz && \
+rm -rf /tmp/srt && rm -rf /tmp/tsduck && \
+rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp/srs
+
