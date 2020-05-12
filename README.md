@@ -14,7 +14,8 @@ Checkout from git and build docker with srs
     $# /tmp/srs/trunk/research/api-server# python server.py 8085 & 
     $# cd /tmp/srs/trunk && ./objs/srs -c conf/console.conf 
     $ source stream e.g ffmpeg -re -i myfavouritevideo.mkv -c copy -f flv rtmp://192.168.1.xxx/live/livestream  
-    # 
+    $ open with a web browser on http://192.168.1.xxx:8085/ to see streaming on web 
+
 ### TODO
  * srt is not able to be compiled with ffmpeg in static mode --enable-libsrt not working 
 
