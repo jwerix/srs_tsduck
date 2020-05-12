@@ -53,11 +53,9 @@ RUN apt-get update && apt-get install -y \
   yasm 
 
 # Copy the build scripts.
-COPY dl.tar.gz build.tar.gz testbuild.sh build-ubuntu.sh build.sh download.pl env.source fetchurl /ffmpeg-static/
+COPY build.sh build-ubuntu.sh download.pl env.source fetchurl /ffmpeg-static/
 VOLUME /ffmpeg-static
 WORKDIR /ffmpeg-static
 
-RUN ["tar", "-xvf", "./dl.tar.gz"]
-RUN ["tar", "-xvf", "./build.tar.gz"]
-RUN ["chmod", "+x", "./testbuild.sh"]
+RUN ["chmod", "+x", "./build.sh"]
 CMD /bin/bash
