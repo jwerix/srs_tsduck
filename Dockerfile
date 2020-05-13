@@ -48,5 +48,7 @@ rm -rf /tmp/srs/trunk/3rdparty/*.tar.gz && \
 rm -rf /tmp/srt && rm -rf /tmp/tsduck && \
 rm -rf /var/lib/apt/lists/*
 
-WORKDIR /tmp/srs
+RUN apt-get remove autoconf automake make curl net-tools patch aptitude gcc git  
+
+WORKDIR /tmp/srs/trunk
 
