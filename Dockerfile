@@ -67,4 +67,4 @@ RUN ["chmod", "+x", "/tmp/srs/trunk/api.service.sh"]
 RUN ["chmod", "+x", "/tmp/srs/trunk/srs.entrypoint.sh"]
 WORKDIR /tmp/srs/trunk
 ENTRYPOINT ["./srs.entrypoint.sh"]
-# docker run -it --env-file srs/srs.env --entrypoint="/tmp/srs/trunk/srs.entrypoint.sh" -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 -d s1:latest
+# docker run -it --env-file srs/srs.env --entrypoint="./srs.entrypoint.sh" -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 -d s1:latest
