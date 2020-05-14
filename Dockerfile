@@ -51,10 +51,7 @@ rm -rf /var/lib/apt/lists/*
 RUN apt-get remove -y autoconf automake make curl net-tools patch aptitude gcc git && \
 apt autoremove -y  
 
-#COPY srs.conf.template /opt/srs-2.0release/trunk/conf/docker.conf.template
-#COPY srs_supervisor.conf.template   /etc/supervisor/conf.d/srs_supervisor.conf.template
-#COPY srs_myenv.sh /root/bin/srs_myenv.sh
-#COPY entrypoint.sh /entrypoint.sh
+# srs server part
 COPY srs/main.conf.template /tmp/srs/trunk/conf/main.conf.template
 COPY srs/srs.supervisor.conf.template   /etc/supervisor/conf.d/srs.supervisor.conf.template
 COPY srs/srs.api.conf   /etc/supervisor/conf.d/api.conf
@@ -62,9 +59,19 @@ COPY srs/srs.service.sh  /tmp/srs/trunk/srs.service.sh
 COPY srs/api.service.sh  /tmp/srs/trunk/api.service.sh
 COPY srs/srs.entrypoint.sh /tmp/srs/trunk/srs.entrypoint.sh
 
+# rtmp2ts and tsduck
+COPY tsduck/rtmp2ts.conf.template /etc/supervisor/conf.d/rtmp2ts.conf.template
+COPY tsduck/tsduck.conf.template /etc/supervisor/conf.d/tsduck.conf.template
+COPY tsduck/rtmp2ts.service.sh /tmp/srs/trunk/rtmp2ts.service.sh
+COPY tsduck/tsduck.service.sh /tmp/srs/trunk/tsduck.service.sh
+
 RUN ["chmod", "+x", "/tmp/srs/trunk/srs.service.sh"]
 RUN ["chmod", "+x", "/tmp/srs/trunk/api.service.sh"]
 RUN ["chmod", "+x", "/tmp/srs/trunk/srs.entrypoint.sh"]
+
+RUN ["chmod", "+x", "/tmp/srs/trunk/rtmp2ts.service.sh"]
+RUN ["chmod", "+x", "/tmp/srs/trunk/tsduck.service.sh"]
+
 WORKDIR /tmp/srs/trunk
 ENTRYPOINT ["./srs.entrypoint.sh"]
 # docker run -it --env-file srs/srs.env --entrypoint="./srs.entrypoint.sh" -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 -d s1:latest
