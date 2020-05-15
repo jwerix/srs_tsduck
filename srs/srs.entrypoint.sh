@@ -1,5 +1,45 @@
 #!/bin/sh
 
+
+#COPY bin/ffmpeg /usr/local/bin/ffmpeg
+#COPY bin/ffprobe /usr/local/bin/ffprobe
+
+#COPY srs/main.conf.template /tmp/srs/trunk/conf/main.conf.template
+#COPY srs/srs.supervisor.conf.template   /etc/supervisor/conf.d/srs.supervisor.conf.template
+#COPY srs/srs.api.conf   /etc/supervisor/conf.d/api.conf
+#COPY srs/srs.service.sh  /tmp/srs/trunk/srs.service.sh
+#COPY srs/api.service.sh  /tmp/srs/trunk/api.service.sh
+#COPY srs/srs.entrypoint.sh /tmp/srs/trunk/srs.entrypoint.sh
+
+# rtmp2ts and tsduck
+#COPY tsduck/rtmp2ts.conf.template /etc/supervisor/conf.d/rtmp2ts.conf.template
+#COPY tsduck/tsduck.conf.template /etc/supervisor/conf.d/tsduck.conf.template
+#COPY tsduck/rtmp2ts.service.sh /tmp/srs/trunk/rtmp2ts.service.sh
+#COPY tsduck/tsduck.service.sh /tmp/srs/trunk/tsduck.service.sh
+
+#RUN ["chmod", "+x", "/tmp/srs/trunk/srs.service.sh"]
+#RUN ["chmod", "+x", "/tmp/srs/trunk/api.service.sh"]
+#RUN ["chmod", "+x", "/tmp/srs/trunk/srs.entrypoint.sh"]
+
+#RUN ["chmod", "+x", "/tmp/srs/trunk/rtmp2ts.service.sh"]
+#RUN ["chmod", "+x", "/tmp/srs/trunk/tsduck.service.sh"]
+
+cd /tmp/
+tar -xvf bigmac.tar.gz 
+cp /tmp/bin/ffmpeg /usr/local/bin/ffmpeg
+cp /tmp/bin/ffprobe /usr/local/bin/ffprobe
+cp /tmp/srs/main.conf.template /tmp/srs/trunk/conf/main.conf.template
+cp /tmp/srs/srs.supervisor.conf.template   /etc/supervisor/conf.d/srs.supervisor.conf.template
+cp /tmp/srs/srs.api.conf   /etc/supervisor/conf.d/api.conf
+cp /tmp/srs/*.sh /tmp/srs/trunk/
+
+cp /tmp/tsduck/*.template /etc/supervisor/conf.d/
+cp /tmp/tsduck/*.sh /tmp/srs/trunk/
+chmod +x /tmp/srs/trunk/*.sh 
+cd /tmp/srs/trunk
+
+
+
 # srs server config modification
 sed -e "s/_listen_/${listen}/g" -e "s/_max_connections_/${max_connections}/g" -e "s/_gop_cache_/${gop_cache}/g" \
  -e "s/_queue_length_/${queue_length}/g"   -e "s/_tcp_nodelay_/${tcp_nodelay}/g"   -e "s/_asprocess_/${asprocess}/g"  \
