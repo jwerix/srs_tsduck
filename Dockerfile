@@ -5,7 +5,7 @@ FROM ubuntu:bionic as dist
 
 RUN apt-get update && \
     apt-get install -y aptitude gcc g++ make patch unzip python git vim supervisor \
-        autoconf automake libtool pkg-config libxml2-dev liblzma-dev curl net-tools \
+        autoconf automake libtool pkg-config libxml2-dev liblzma-dev curl \
         cmake extra-cmake-modules mediainfo openssl1.0 libssl1.0-dev libpthread-stubs0-dev  && \
         mkdir -p /usr/lib64
 
@@ -17,6 +17,10 @@ RUN apt-get update && \
 #ENV PATH $PATH:/bin
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig
 
+#cd /usr/local && \
+#    curl -L -O https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
+#    tar xf go1.13.5.linux-amd64.tar.gz && \
+#    rm -f go1.13.5.linux-amd64.tar.gz && \
 
 # Build srt
 RUN cd /tmp && git clone --depth 1 https://github.com/Haivision/srt.git && \
@@ -26,10 +30,6 @@ make -j 4&& make install && \
 cd /tmp && git clone https://github.com/tsduck/tsduck.git && cd tsduck && ./build/install-prerequisites.sh && \
 make -j 4 NOPCSC=1 NOCURL=1 NODTAPI=1 NOSRT=0 NOTEST=1 && \
 make install && \
-cd /usr/local && \
-    curl -L -O https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
-    tar xf go1.13.5.linux-amd64.tar.gz && \
-    rm -f go1.13.5.linux-amd64.tar.gz && \
 cd /tmp && git clone https://github.com/ossrs/srs.git && \
 cd /tmp/srs && git checkout 4.0release && \
 cd /tmp/srs/trunk && ./configure && \
@@ -39,7 +39,7 @@ rm -rf /tmp/srs/trunk/3rdparty/*.zip && \
 rm -rf /tmp/srs/trunk/3rdparty/*.tar.gz && \
 rm -rf /tmp/srt && rm -rf /tmp/tsduck && \
 rm -rf /var/lib/apt/lists/* &&\ 
-apt-get remove -y autoconf automake make curl net-tools patch aptitude gcc git && \
+apt-get remove -y autoconf automake make curl patch aptitude gcc git && \
 apt autoremove -y  
 
 # srs server part

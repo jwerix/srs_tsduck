@@ -32,13 +32,15 @@ cp /tmp/srs/main.conf.template /tmp/srs/trunk/conf/main.conf.template
 cp /tmp/srs/srs.supervisor.conf.template   /etc/supervisor/conf.d/srs.supervisor.conf.template
 cp /tmp/srs/srs.api.conf   /etc/supervisor/conf.d/api.conf
 cp /tmp/srs/*.sh /tmp/srs/trunk/
+rm -rf bigmac.tar.gz 
 
 cp /tmp/tsduck/*.template /etc/supervisor/conf.d/
 cp /tmp/tsduck/*.sh /tmp/srs/trunk/
 chmod +x /tmp/srs/trunk/*.sh 
 cd /tmp/srs/trunk
 
-
+# remove all necessary files
+rm -rf /usr/local/share/man  /usr/share/doc 
 
 # srs server config modification
 sed -e "s/_listen_/${listen}/g" -e "s/_max_connections_/${max_connections}/g" -e "s/_gop_cache_/${gop_cache}/g" \
