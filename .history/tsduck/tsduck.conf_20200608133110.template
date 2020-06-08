@@ -1,0 +1,15 @@
+[program:tsduck]
+environment=
+    TSDUCK_MIN_PCR=_TSDUCK_MIN_PCR_,
+    TSDUCK_LOCAL_IP=_TSDUCK_LOCAL_IP_,
+    TSDUCK_MULTICAST_ADDR=_TSDUCK_MULTICAST_ADDR_,
+    TSDUCK_MULTICAST_PORT=_TSDUCK_MULTICAST_PORT_
+command=/tmp/srs/trunk/tsduck.service.sh
+priority=900
+directory=/tmp/srs/trunk
+autostart=true
+autorestart=true
+startretries=3
+stderr_logfile=/var/log/tsduck.log
+stdout_logfile=/var/log/tsduck.log
+user=root

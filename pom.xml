@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>media_tool</groupId>
+	<artifactId>run</artifactId>
+	<version>1</version>
+	<properties>
+		<project.dockerTag>${project.version}</project.dockerTag>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>fabric8-maven-plugin</artifactId>
+				<version>4.3.1</version>
+				<configuration>
+					<registry>204971755566.dkr.ecr.eu-west-1.amazonaws.com</registry>
+					<authConfig>
+						<username>AKIAIEKHGROS3JB3B6NQ</username>
+						<password>IZxb6AjpXhFN2sTiPvAnJosMQKpqMJjm213zaTjB</password>
+					</authConfig>
+					<dockerHost>http://192.168.1.14:2375</dockerHost>
+					<certPath>/home/wei/srs_tsduck</certPath>
+					<logStdout>true</logStdout>
+					<verbose>true</verbose>
+					<skipRun>true</skipRun>
+					<skipMachine>true</skipMachine>
+					<images>
+						<image>
+							<name>204971755566.dkr.ecr.eu-west-1.amazonaws.com/media_tool:${project.version}</name>
+							<build>
+								<buildOptions>
+									<networkmode>host</networkmode>
+								</buildOptions>
+								<nocache>true</nocache>
+								<cleanup>try</cleanup>
+								<dockerFileDir>${project.basedir}</dockerFileDir>
+							</build>
+						</image>
+					</images>
+				</configuration>
+				<!-- Connect start/stop to pre- and
+				   post-integration-test phase, respectively if you want to start
+				   your docker containers during integration tests -->
+				<executions>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<!-- "build" should be used to create the images with the
+						  artifact -->
+							<goal>build</goal>
+						</goals>
+					</execution>
+					<execution>
+						 <id>push</id>
+						 <phase>post-integration-test</phase>
+						 <goals>
+							<goal>push</goal>
+						 </goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

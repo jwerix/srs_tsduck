@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/bin/tsp -v -I file /videofifo.ts -P pcrbitrate --min-pcr ${TSDUCK_MIN_PCR} -P regulate -O ip --enforce-burst --packet-burst 7 --local-address ${TSDUCK_LOCAL_IP} --rtp ip ${TSDUCK_MULTICAST_ADDR}:${TSDUCK_MULTICAST_PORT}
