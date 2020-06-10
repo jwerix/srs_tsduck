@@ -4,11 +4,14 @@ SRS build with tsduck, mediainfo, srt
 *STATUS*:
 
 ------------------
+
  - This is a fork from https://github.com/zimbatm/ffmpeg-static made by zimbatm etc... 
  - This docker file is built for ubuntu 18.04 bionic 
  - latest modification add supervisor to start srs, api at 8085 and rtmp2ts, tsduck (disabled by default for the moment)
+
  
 Checkout from git and build docker with srs
+
 ---------------
     $ docker build -t <s1> .
     $ docker run -it -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 <s1> bash 
@@ -52,4 +55,4 @@ wei@pv105-ub1804:~/srs_tsduck$ tar tvf bigmac.tar.gz
 -rw-rw-r-- wei/wei         366 2020-05-14 17:51 tsduck/tsduck.conf.template
 -rw-rw-r-- wei/wei           3 2020-05-14 17:22 tsduck/tsduck.env
 -rwxrwxr-x wei/wei         127 2020-05-14 17:57 tsduck/tsduck.service.sh
-wei@pv105-ub1804:~/srs_tsduck$ 
+wei@pv105-ub1804:~/srs_tsduck$
