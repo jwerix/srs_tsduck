@@ -16,12 +16,22 @@ Checkout from git and build docker with srs
     $ docker build -t <s1> .
     $ docker run -it -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 <s1> bash 
     $ docker run -it --env-file srs/srs.env --entrypoint="./srs.entrypoint.sh" -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 -d s1:latest 
-    $ 
+    $ docker run -it --env-file srs/srs.env --entrypoint="./srs.entrypoint.sh" -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 -d xxx.dkr.ecr.eu-west-1.amazonaws.com/media_tool:v4
     $
     $# /tmp/srs/trunk/research/api-server# python server.py 8085 & 
     $# cd /tmp/srs/trunk && ./objs/srs -c conf/console.conf 
     $ source stream e.g ffmpeg -re -i myfavouritevideo.mkv -c copy -f flv rtmp://192.168.1.xxx/live/livestream  
     $ open with a web browser on http://192.168.1.xxx:8085/ to see streaming on web 
+
+* build
+'
+ 1957  docker stop unruffled_johnson
+ 1958  rm -rf bigmac.tar.gz 
+ 1959  tar cvfz bigmac.tar.gz bin srs tsduck 
+ 1960  docker build  -t xxx.dkr.ecr.eu-west-1.amazonaws.com/media_tool:v4  .
+ 1961  docker run -it --env-file srs/srs.env --entrypoint="./srs.entrypoint.sh" -p 1935:1935 -p 1985:1985 -p 8080:8080 -p 8085:8085 -d xxx.dkr.ecr.eu-west-1.amazonaws.com/media_tool:v4
+'
+
 
 ### TODO
  * srt is not able to be compiled with ffmpeg in static mode --enable-libsrt not working 
