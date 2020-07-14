@@ -4,8 +4,9 @@ SRS build with tsduck, mediainfo, srt
 *STATUS*:
 
 ------------------
- -  V3 has only one stream
+ - V4.5 add iproute2 package so that we have tc qdisc traffic shaping, see srs/srs.env NIC param and /usr/local/bin/tc_trafficshaping.sh script
  - V4 Bring 2x tsduck, 2x tsort and srs into a single docker, using srs native exec module $name to make difference of two stream. Under all-in-one branch
+ -  V3 has only one stream
  - This is a fork from https://github.com/zimbatm/ffmpeg-static made by zimbatm etc... 
  - This docker file is built for ubuntu 18.04 bionic 
  - latest modification add supervisor to start srs, api at 8085 and rtmp2ts, tsduck (disabled by default for the moment)

@@ -25,7 +25,7 @@
 #RUN ["chmod", "+x", "/tmp/srs/trunk/tsduck.service.sh"]
 
 cd /tmp/
-tar -xvf bigmac.tar.gz 
+tar -xvf bigmac.tar.gz
 cp /tmp/bin/ffmpeg /usr/local/bin/ffmpeg
 cp /tmp/bin/ffprobe /usr/local/bin/ffprobe
 cp /tmp/bin/tsorts /usr/local/bin/tsorts
@@ -80,5 +80,11 @@ sed  -e "s/_RW_TIMEOUT_/${RW_TIMEOUT}/g"  -e "s/_BITRATE_/${BITRATE}/g" -e "s/_S
 sed -e "s/_TSDUCK_BITRATE_/${TSDUCK_BITRATE}/g" -e "s/_TSDUCK_TOS_/${TSDUCK_TOS}/g" -e "s/_TSDUCK_TTL_/${TSDUCK_TTL}/g"  -e "s/_TSDUCK_PACKET_BURST_/${TSDUCK_PACKET_BURST}/g"    -e "s/_TSDUCK_LOCAL_IP_/${TSDUCK_LOCAL_IP}/g" -e "s/_TSDUCK_MULTICAST_ADDR_/${TSDUCK_MULTICAST_ADDR}/g" -e "s/_TSDUCK_MULTICAST_PORT_/${TSDUCK_MULTICAST_PORT}/g"   /etc/supervisor/conf.d/tsduck.conf.template > /etc/supervisor/conf.d/tsduck.conf
 sed -e "s/_TSDUCK_BITRATE2_/${TSDUCK_BITRATE2}/g" -e "s/_TSDUCK_TOS2_/${TSDUCK_TOS2}/g"  -e "s/_TSDUCK_TTL2_/${TSDUCK_TTL2}/g" -e "s/_TSDUCK_PACKET_BURST2_/${TSDUCK_PACKET_BURST2}/g"    -e "s/_TSDUCK_LOCAL_IP2_/${TSDUCK_LOCAL_IP2}/g" -e "s/_TSDUCK_MULTICAST_ADDR2_/${TSDUCK_MULTICAST_ADDR2}/g" -e "s/_TSDUCK_MULTICAST_PORT2_/${TSDUCK_MULTICAST_PORT2}/g"   /etc/supervisor/conf.d/tsduck2.conf.template > /etc/supervisor/conf.d/tsduck2.conf
 
+
+cp /tmp/bin/tc_trafficshaping.sh.template /usr/local/bin/tc_trafficshaping.sh.template
+
+sed -e "s/_NIC_/${NIC}/g" -e "s/_TSDUCK_BITRATE_/${TSDUCK_BITRATE}/g" -e "s/_TSDUCK_MULTICAST_ADDR_/${TSDUCK_MULTICAST_ADDR}/g" -e "s/_TSDUCK_MULTICAST_ADDR2_/${TSDUCK_MULTICAST_ADDR2}/g" /usr/local/bin/tc_trafficshaping.sh.template > /usr/local/bin/tc_trafficshaping.sh
+chmod a+x /usr/local/bin/tc_trafficshaping.sh
+/usr/local/bin/tc_trafficshaping.sh
 
 exec /usr/bin/supervisord -n
