@@ -49,4 +49,3 @@ This project is licensed under the ISC. See the [LICENSE](LICENSE) file for
 the legalities.
 
 204971755566.dkr.ecr.eu-west-1.amazonaws.com/media_tool:v3
-
